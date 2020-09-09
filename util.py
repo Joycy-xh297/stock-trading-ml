@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn import preprocessing
 import numpy as np
 
-history_points = 50
+history_points = 20
 
 
 def csv_to_dataset(csv_path):
@@ -11,6 +11,9 @@ def csv_to_dataset(csv_path):
     data = data.drop(0, axis=0)
 
     data = data.values
+    data = data[:, 1:]
+    # print(data[:5])
+    # exit()
 
     data_normaliser = preprocessing.MinMaxScaler()
     data_normalised = data_normaliser.fit_transform(data)
@@ -40,7 +43,7 @@ def csv_to_dataset(csv_path):
     for his in ohlcv_histories_normalised:
         # note since we are using his[3] we are taking the SMA of the closing price
         sma = np.mean(his[:, 3])
-        macd = calc_ema(his, 12) - calc_ema(his, 26)
+        # macd = calc_ema(his, 12) - calc_ema(his, 26)
         technical_indicators.append(np.array([sma]))
         # technical_indicators.append(np.array([sma,macd,]))
 

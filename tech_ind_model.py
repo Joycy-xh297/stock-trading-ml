@@ -12,7 +12,7 @@ from util import csv_to_dataset, history_points
 
 # dataset
 
-ohlcv_histories, technical_indicators, next_day_open_values, unscaled_y, y_normaliser = csv_to_dataset('MSFT_daily.csv')
+ohlcv_histories, technical_indicators, next_day_open_values, unscaled_y, y_normaliser = csv_to_dataset('gg.csv')
 
 test_split = 0.9
 n = int(ohlcv_histories.shape[0] * test_split)
@@ -91,4 +91,4 @@ plt.legend(['Real', 'Predicted'])
 plt.show()
 
 from datetime import datetime
-model.save(f'technical_model.h5')
+model.save('technical_model.h5')
